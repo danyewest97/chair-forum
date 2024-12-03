@@ -13,14 +13,21 @@ import pymongo
 # Edited by S. Adams for Designing Software for the Web to add comments and remove flash messaging
 
 
-# Code for connecting to the MongoDB database
+# This code connects to the database we are using, so that we can access info about users and posts, such as login info
 connection_string = os.environ["MONGO_CONNECTION_STRING"]
 db_name = os.environ["MONGO_DBNAME"]
 
 client = pymongo.MongoClient(connection_string)
 db = client[db_name]
-# Now db can be used to access the ChairDB database to get info about users and posts
 
+# Pings to show if you have successfully connected to the MongoDB database
+try:
+    client.admin.command('ping')
+    print("Pinged your deployment. You successfully connected to MongoDB!")
+except Exception as e:
+    print(e)
+
+# Now the db variable can be used to access the ChairDB database to get info about users and posts
 
 
 app = Flask(__name__)
