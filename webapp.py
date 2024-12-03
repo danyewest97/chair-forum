@@ -5,6 +5,7 @@ from flask import render_template
 
 import pprint
 import os
+import pymongo
 
 # This code originally from https://github.com/lepture/flask-oauthlib/blob/master/example/github.py
 # Edited by P. Conrad for SPIS 2016 to add getting Client Id and Secret from
