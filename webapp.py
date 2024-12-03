@@ -12,6 +12,17 @@ import pymongo
 # environment variables, so that this will work on Heroku.
 # Edited by S. Adams for Designing Software for the Web to add comments and remove flash messaging
 
+
+# Code for connecting to the MongoDB database
+connection_string = os.environ["MONGO_CONNECTION_STRING"]
+db_name = os.environ["MONGO_DBNAME"]
+
+client = pymongo.MongoClient(connection_string)
+db = client[db_name]
+# Now db can be used to access the ChairDB database to get info about users and posts
+
+
+
 app = Flask(__name__)
 
 app.debug = True #Change this to False for production
