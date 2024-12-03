@@ -13,7 +13,7 @@ import os
 
 app = Flask(__name__)
 
-app.debug = False #Change this to False for production
+app.debug = True #Change this to False for production
 os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1' #Remove once done debugging
 
 app.secret_key = os.environ['SECRET_KEY'] #used to sign session cookies
@@ -84,23 +84,6 @@ def renderPage1():
         user_data_pprint = '';
     return render_template('page1.html',dump_user_data=user_data_pprint)
 
-@app.route('/page2')
-def renderPage2():
-    if "user_data" in session:
-        print(session["user_data"])
-        udata = [] # List containing the specific bits of user data to show on page2
-        sdata = session["user_data"] # Variable with all of the user data
-        
-        # Adding specific bits of data to the udata list
-        udata.append("Bio: " + str(sdata["bio"]))
-        udata.append("Is Admin: " + str(sdata["site_admin"]))
-        udata.append("Number of Followers: " + str(sdata["followers"]))
-        udata.append("Company: " + str(sdata["company"]))
-        udata.append("Location: " + str(sdata["location"]))
-        udata.append("Account Creation Date: " + str(sdata["created_at"]))
-        
-        
-    return render_template('page2.html', data=udata)
 
 @app.route('/googleb4c3aeedcc2dd103.html')
 def render_google_verification():
