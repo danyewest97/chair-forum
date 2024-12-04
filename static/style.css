@@ -10,3 +10,8 @@ body {
 	width: 30%;
 	height: 20%;
 }
+
+.center {
+	text-align: center;
+	margin: auto;
+}
