@@ -5,3 +5,8 @@ body {
 #content {
      margin-left: 20px;
 }
+
+.input-body {
+	width: 30%;
+	height: 20%;
+}

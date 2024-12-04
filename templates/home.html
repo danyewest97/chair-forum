@@ -3,9 +3,34 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-  <h1>Chair Forum</h1>
+	<h1>Chair Forum</h1>
 
-<p>This is the chair forum. Talk about chairs (or else).</p>
-
-
+	<p>This is the chair forum. Talk about chairs (or else).</p>
+	
+	
+	<!-- This is where the user will write a post. -->
+	<!-- It is a form element that submits a POST request to the server -->
+	<!-- (using POST because the user will be redirected to the posts page after posting, so they don't need their post in the URL) -->
+	<p>Write a post!</p>
+	<br>
+	<form action="/create_post" method="post">
+		<label for="post_title">Title:</label>
+		<br>
+		<input type="text" name="post_title" placeholder="Write here..."></input>
+		<br>
+		<br>
+		<label for="post_body">Body:</label>
+		<br>
+		<textarea class="input-body" rows="4" name="post_body" placeholder="Write here..."></textarea>
+		<br>
+		<br>
+		{% if logged_in %}
+			<input type="submit" value="Post">
+		{% endif %}
+		{% if not logged_in %}
+			<p>You must be logged in to post</p>
+		{% endif %}
+	</form>
+	
+	
 {% endblock %}
