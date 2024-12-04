@@ -128,7 +128,7 @@ def get_github_oauth_token():
 
 
 @app.route('/create_post',methods=["POST"])
-def renderPage1():
+def create_post():
     title = request.form["post_title"]
     msg = request.form["post_body"]
     username = session['user_data']['login']
