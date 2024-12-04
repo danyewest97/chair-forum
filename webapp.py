@@ -133,7 +133,8 @@ def create_post():
     msg = request.form["post_body"]
     username = session['user_data']['login']
     uid = session['user_data']['id']
-    create_post(uid,msg,title,username)
+    if 'github_token' in session:
+        create_post(uid,msg,title,username)
     return redirect("/posts", code=302)
 
 
