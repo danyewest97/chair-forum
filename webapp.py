@@ -127,13 +127,20 @@ def get_github_oauth_token():
 
 
 
+@app.route('/create_post',methods=["POST"])
+def renderPage1():
+    title = request.form["post_title"]
+    msg = request.form["post_body"]
+    username = session['user_data']['login']
+    uid = session['user_data']['id']
+    create_post(uid,msg,title,username)
+    return render_template('posts.html')
 
 
 
 
-
-def post(uid,msg,title):
-    newPost = {"user":uid,"message":msg,"title":title}
+def create_post(uid,msg,title,username):
+    newPost = {"uid":uid,"message":msg,"title":title,"username":username}
     db.insert_one(newPost)
 
 
