@@ -15,3 +15,14 @@ body {
 	text-align: center;
 	margin: auto;
 }
+
+.left {
+	text-align: left;
+	margin: auto;
+}
+
+.card {
+	padding: 10px;
+	border: 2px solid black;
+	border-radius: 5px;
+}
