@@ -23,7 +23,7 @@ db_name = os.environ["MONGO_DBNAME"]
 
 client = pymongo.MongoClient(connection_string)
 db = client[db_name]
-coll = db["Posts"]
+posts = db["Posts"]
 
 # Pings to show if you have successfully connected to the MongoDB database
 try:
