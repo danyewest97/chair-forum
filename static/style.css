@@ -22,7 +22,18 @@ body {
 }
 
 .card {
+	height: 175px;
+	width: 75%;
 	padding: 10px;
 	border: 2px solid black;
 	border-radius: 5px;
+}
+
+textarea.card-text {
+	resize: none;
+	border: none;
+    outline: none;
+	background-color: white;
+	width: 70%;
+	overflow:auto;
 }

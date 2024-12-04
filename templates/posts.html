@@ -3,8 +3,9 @@
 {% block title %}Posts{% endblock %}
 
 {% block content %}
-  <h1>Chair Forum</h1>
-
+	<h1 class="center">Chair Forum</h1>
+	<br>
+	<br>
 	<!-- Test Bootstrap Card -->
 	<!-- Linking bootstrap, will remove later when testing is done, I only linked it to work on the post cards without running the webapp -->
 	
@@ -21,10 +22,10 @@
 	
 	
 	{% for post in posts %}
-		<div class="card center" style="width: 18rem;">
+		<div class="card center">
 			<div class="card-body left">
 				<h2 class="card-title">{{ post.title|e }}</h2>
-				<p class="card-text">{{ post.message|e }}</p>
+				<textarea class="card-text" disabled>{{ post.message|e }}</textarea>
 				<h6 class="card-subtitle mb-2 text-muted">{{ post.username|e }}</h6>
 				<h6 class="card-subtitle mb-2 text-muted">{{ post.uid|e }}</h6>
 			</div>
