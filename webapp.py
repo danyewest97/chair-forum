@@ -100,13 +100,13 @@ def authorized():
     return render_template('message.html', message=message)
 
 
-@app.route('/page1')
+@app.route('/posts')
 def renderPage1():
     # if 'user_data' in session:
         # user_data_pprint = pprint.pformat(session['user_data'])#format the user data nicely
     # else:
         # user_data_pprint = '';
-    return render_template('page1.html')
+    return render_template('posts.html')
 
 
 @app.route('/googleb4c3aeedcc2dd103.html')
