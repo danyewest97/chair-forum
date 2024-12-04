@@ -102,11 +102,10 @@ def authorized():
 
 @app.route('/posts')
 def renderPage1():
-    # if 'user_data' in session:
-        # user_data_pprint = pprint.pformat(session['user_data'])#format the user data nicely
-    # else:
-        # user_data_pprint = '';
-    return render_template('posts.html')
+    latest5 = []
+    for i in range(5):
+        latest5.append(coll.find()[i])
+    return render_template('posts.html',posts=latest5)
 
 
 @app.route('/googleb4c3aeedcc2dd103.html')
