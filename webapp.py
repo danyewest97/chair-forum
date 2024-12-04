@@ -134,7 +134,7 @@ def create_post():
     username = session['user_data']['login']
     uid = session['user_data']['id']
     create_post(uid,msg,title,username)
-    return render_template('posts.html')
+    return redirect("/posts", code=302)
 
 
 

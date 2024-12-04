@@ -16,12 +16,12 @@
 	<form action="/create_post" method="post">
 		<label for="post_title">Title:</label>
 		<br>
-		<input type="text" name="post_title" placeholder="Write here..."></input>
+		<input type="text" name="post_title" placeholder="Write here..." required></input>
 		<br>
 		<br>
 		<label for="post_body">Body:</label>
 		<br>
-		<textarea class="input-body" rows="4" name="post_body" placeholder="Write here..."></textarea>
+		<textarea class="input-body" rows="4" name="post_body" placeholder="Write here..." required></textarea>
 		<br>
 		<br>
 		{% if logged_in %}
