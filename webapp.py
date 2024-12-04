@@ -104,7 +104,7 @@ def authorized():
 def renderPage1():
     latest5 = []
     for i in range(5):
-        latest5.append(coll.find()[i])
+        latest5.append(posts.find()[i])
     return render_template('posts.html',posts=latest5)
 
 
