@@ -102,9 +102,10 @@ def authorized():
 
 @app.route('/posts')
 def renderPage1():
+    count = posts.count_documents({})
     latest5 = []
     for i in range(5):
-        latest5.append(posts.find()[i])
+        latest5.append(posts.find()[count - i - 1])
     return render_template('posts.html',posts=latest5)
 
 
