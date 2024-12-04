@@ -133,7 +133,8 @@ def get_github_oauth_token():
 
 
 def post(uid,msg,title):
-    db
+    newPost = {"user":uid,"message":msg,"title":title}
+    db.insert_one(newPost)
 
 
 
