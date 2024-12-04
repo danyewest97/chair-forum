@@ -24,6 +24,7 @@ db_name = os.environ["MONGO_DBNAME"]
 
 client = pymongo.MongoClient(connection_string)
 db = client[db_name]
+coll = db["Posts"]
 
 # Pings to show if you have successfully connected to the MongoDB database
 try:
@@ -117,6 +118,24 @@ def render_google_verification():
 @github.tokengetter
 def get_github_oauth_token():
     return session['github_token']
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+def post(uid,msg,title):
+    db
+
 
 
 if __name__ == '__main__':
