@@ -141,7 +141,7 @@ def renderPage1():
 
 def create_post(uid,msg,title,username):
     newPost = {"uid":uid,"message":msg,"title":title,"username":username}
-    db.insert_one(newPost)
+    posts.insert_one(newPost)
 
 
 
