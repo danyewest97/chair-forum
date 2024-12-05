@@ -37,3 +37,7 @@ textarea.card-text {
 	width: 70%;
 	overflow:auto;
 }
+
+#post-mode-navbar {
+	margin-left:44%;
+}

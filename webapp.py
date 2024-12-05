@@ -10,7 +10,7 @@ import sys
 
 
 from scripts import posts
-import random
+import random as RANDOM
 
 # This code originally from https://github.com/lepture/flask-oauthlib/blob/master/example/github.py
 # Edited by P. Conrad for SPIS 2016 to add getting Client Id and Secret from
@@ -106,7 +106,7 @@ def authorized():
 
 
 @app.route('/posts')
-def renderPage1():
+def renderPosts():
     if "postMode" not in session:
         session["postMode"] = "latest" #sets how posts should be ordered on posts.html page
     count = posts.count_documents({})
@@ -119,9 +119,26 @@ def renderPage1():
             loadedPosts.append(posts.find()[i])
     elif session["postMode"] == "random":
         for i in range(5):
-            loadedPosts.append(posts.find()[random.randint(0,count-1)])
+            loadedPosts.append(posts.find()[RANDOM.randint(0,count-1)])
         
     return render_template('posts.html',posts=loadedPosts)
+
+
+
+@app.route('/latest')
+def latest():
+    session["postMode"] = "latest"
+    return redirect("/posts", code=302)
+    
+@app.route('/oldest')
+def oldest():
+    session["postMode"] = "oldest"
+    return redirect("/posts", code=302)
+
+@app.route('/random')
+def random():
+    session["postMode"] = "random"
+    return redirect("/posts", code=302)
 
 
 @app.route('/googleb4c3aeedcc2dd103.html')
