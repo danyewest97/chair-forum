@@ -27,7 +27,7 @@ db = client[db_name]
 posts = db["Posts"]
 
 
-session["postMode"] = "latest" #sets how posts should be ordered on posts.html page via /posts app route
+
 
 
 # Pings to show if you have successfully connected to the MongoDB database
@@ -107,6 +107,8 @@ def authorized():
 
 @app.route('/posts')
 def renderPage1():
+    if "postMode" not in session:
+        session["postMode"] = "latest" #sets how posts should be ordered on posts.html page
     count = posts.count_documents({})
     loadedPosts = []
     if session["postMode"] == "latest":
