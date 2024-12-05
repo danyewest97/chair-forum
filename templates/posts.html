@@ -3,6 +3,8 @@
 {% block title %}Posts{% endblock %}
 
 {% block content %}
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="static/posts.js"></script>
 	<h1 class="center">Chair Forum</h1>
 	<br>
 	<br>
@@ -25,7 +27,7 @@
 		<div class="card center">
 			<div class="card-body left">
 				<h2 class="card-title">{{ post.title|e }}</h2>
-				<textarea class="card-text" disabled>{{ post.message|e }}</textarea>
+				<textarea class="card-text" data-is-cutoff="false" disabled>{{ post.message|e }}</textarea>
 				<h6 class="card-subtitle mb-2 text-muted">{{ post.username|e }}</h6>
 				<h6 class="card-subtitle mb-2 text-muted">{{ post.uid|e }}</h6>
 			</div>
