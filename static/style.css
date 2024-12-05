@@ -38,6 +38,13 @@ textarea.card-text {
 	overflow:auto;
 }
 
+.show-more-button {
+	position: relative;
+	right: 70.5%;
+	font-size: 10px;
+	visibility: hidden;
+}
+
 #post-mode-navbar {
 	margin-left:44%;
 }
