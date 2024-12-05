@@ -109,16 +109,15 @@ def authorized():
 def renderPage1():
     count = posts.count_documents({})
     loadedPosts = []
-    if session["postMode"] === "latest":
+    if session["postMode"] == "latest":
         for i in range(5):
             loadedPosts.append(posts.find()[count - i - 1])
-    elif session["postMode"] === "oldest":
+    elif session["postMode"] == "oldest":
         for i in range(5):
             loadedPosts.append(posts.find()[i])
-    elif session["postMode"] === "random":
+    elif session["postMode"] == "random":
         for i in range(5):
             loadedPosts.append(posts.find()[random.randint(0,count-1)])
-    else:
         
     return render_template('posts.html',posts=loadedPosts)
 
