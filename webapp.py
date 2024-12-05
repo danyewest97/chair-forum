@@ -10,6 +10,7 @@ import sys
 
 
 from scripts import posts
+import random
 
 # This code originally from https://github.com/lepture/flask-oauthlib/blob/master/example/github.py
 # Edited by P. Conrad for SPIS 2016 to add getting Client Id and Secret from
@@ -24,6 +25,10 @@ db_name = os.environ["MONGO_DBNAME"]
 client = pymongo.MongoClient(connection_string)
 db = client[db_name]
 posts = db["Posts"]
+
+
+session["postMode"] = "latest" #sets how posts should be ordered on posts.html page via /posts app route
+
 
 # Pings to show if you have successfully connected to the MongoDB database
 try:
@@ -103,10 +108,19 @@ def authorized():
 @app.route('/posts')
 def renderPage1():
     count = posts.count_documents({})
-    latest5 = []
-    for i in range(5):
-        latest5.append(posts.find()[count - i - 1])
-    return render_template('posts.html',posts=latest5)
+    loadedPosts = []
+    if session["postMode"] === "latest":
+        for i in range(5):
+            loadedPosts.append(posts.find()[count - i - 1])
+    elif session["postMode"] === "oldest":
+        for i in range(5):
+            loadedPosts.append(posts.find()[i])
+    elif session["postMode"] === "random":
+        for i in range(5):
+            loadedPosts.append(posts.find()[random.randint(0,count-1)])
+    else:
+        
+    return render_template('posts.html',posts=loadedPosts)
 
 
 @app.route('/googleb4c3aeedcc2dd103.html')
