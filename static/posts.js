@@ -10,6 +10,7 @@ $(document).ready(function() {
 			
 			$(this).text(newText);
 			$(this).data("is-cutoff", "true");
+			console.log($(this).data("is-cutoff"));
 		}
 		
 	});
