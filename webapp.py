@@ -70,6 +70,8 @@ def inject_logged_in():
     is_logged_in = 'github_token' in session #this will be true if the token is in the session and false otherwise
     if is_logged_in and session['user_data']['id'] in admins.find():
         is_admin = True
+    else:
+        is_admin = False
     return {"logged_in":is_logged_in,"is_admin":is_admin}
 
 @app.route('/')
