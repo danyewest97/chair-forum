@@ -7,7 +7,7 @@ import pprint
 import os
 import pymongo
 import sys
-
+from bson.objectid import ObjectId
 
 from scripts import posts
 import random as RANDOM
@@ -68,11 +68,7 @@ github = oauth.remote_app(
 @app.context_processor
 def inject_logged_in():
     is_logged_in = 'github_token' in session #this will be true if the token is in the session and false otherwise
-    if is_logged_in and session['user_data']['id'] in admins.find():
-        is_admin = True
-    else:
-        is_admin = False
-    return {"logged_in":is_logged_in,"is_admin":is_admin}
+    return {"logged_in":is_logged_in}
 
 @app.route('/')
 def home():
@@ -110,6 +106,8 @@ def authorized():
 # Loads posts page and checks in what order to load the posts. Latest 5, oldest 5, or a random 5.
 @app.route('/posts')
 def renderPosts():
+    is_admin = check_is_admin()
+    print(is_admin)
     if "postMode" not in session:
         session["postMode"] = "latest" #sets how posts should be ordered on posts.html page
     count = posts.count_documents({})
@@ -124,7 +122,7 @@ def renderPosts():
         for i in range(5):
             loadedPosts.append(posts.find()[RANDOM.randint(0,count-1)])
         
-    return render_template('posts.html',posts=loadedPosts)
+    return render_template('posts.html',posts=loadedPosts,is_admin=is_admin)
 
 
 # Changes post mode to latest 5
@@ -164,14 +162,34 @@ def create_post():
     username = session['user_data']['login']
     uid = session['user_data']['id']
     if 'github_token' in session:
-        create_post(uid,msg,title,username)
+        create_new_post(uid,msg,title,username)
     return redirect("/posts", code=302)
 
 
 # Nested function for /create_post app route. Takes input and puts input into the database
-def create_post(uid,msg,title,username):
+def create_new_post(uid,msg,title,username):
     newPost = {"uid":uid,"message":msg,"title":title,"username":username}
     posts.insert_one(newPost)
+
+
+def check_is_admin():
+    try:
+        if admins.find({"uid":session['user_data']['id']}):
+            admin = True
+        else:
+            print("BLAH")
+            admin = False
+    except:
+        admin = False
+    
+    return admin
+    
+    
+    
+@app.route('/delete_post',methods=["POST"])
+def delete_post():
+    posts.delete_one({"_id":ObjectId(request.form["post_id"])})
+    return redirect("/posts", code=302)
 
 
 

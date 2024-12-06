@@ -40,9 +40,12 @@
 				<h6 class="card-subtitle mb-2 text-muted">{{ post.uid|e }}</h6>
 			</div>
 			{% if is_admin %}
-				<div class="card-body right">
-					<button class="deletor">Delete Post</button>
-				</div>
+				<form action="/delete_post" method="post">
+					<div class="card-body right">
+						<input type="hidden" name="post_id" value="{{post['_id']}}">
+						<button type="submit" class="deletor">Delete Post</button>
+					</div>
+				</form>
 			{% endif %}
 		</div>
 		<br>
