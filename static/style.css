@@ -42,7 +42,7 @@ textarea.card-text {
 .show-more-button {
 	position: relative;
 	font-size: 10px;
-	visibility: hidden;
+	display: none;
 }
 
 #post-mode-navbar {

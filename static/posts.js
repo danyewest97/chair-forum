@@ -1,7 +1,8 @@
 $(document).ready(function() {
 	$(".post-body").data("is-cutoff", "false");
 	
-	var maxCutoffCharacters = 238;
+	var maxCutoffCharacters = 10000;
+	var maxCutoffLines = 3; // Does not check whether there are 3 or more lines of text, only checks return characters ("/n")
 	
 	
 	$(".post-body").each(function() {
@@ -24,19 +25,49 @@ $(document).ready(function() {
 			
 			body.text(cutoffText);
 			$(this).data("is-cutoff", "true");
-			$(this).children("button.show-more-button").css("visibility", "visible");
+			$(this).children("button.show-more-button").css("display", "block");
+			
 			
 			// Auto-resizes the textareas in the posts so that all the text in each post is shown (up to the maxCutoffCharacters character limit)
 			// Doing this a second time here to update the sizes of the posts that exceeded the character limit before storing their cutoff height
 			body.on("input", function() {
 				this.style.height = "auto";
-				this.style.height = this.scrollHeight + "px";
+				
+				this.style.height = (this.scrollHeight) + "px";
 			});
 			body.trigger("input");
 			
 			body.data("full-text", fullText);
 			body.data("cutoff-text", cutoffText);
 			body.data("cutoff-height", body.height());
+			
+		} else if (countLines(fullText) > maxCutoffLines) {
+			var cutoffIndex = indexOfLine(maxCutoffLines, fullText);
+			
+			cutoffText = fullText.substring(0, cutoffIndex);
+			cutoffText += "..."
+			
+			body.text(cutoffText);
+			$(this).data("is-cutoff", "true");
+			$(this).children("button.show-more-button").css("display", "block");
+			
+			
+			// Auto-resizes the textareas in the posts so that all the text in each post is shown (up to the maxCutoffCharacters character limit)
+			// Doing this a second time here to update the sizes of the posts that exceeded the character limit before storing their cutoff height
+			body.on("input", function() {
+				this.style.height = "auto";
+				
+				this.style.height = (this.scrollHeight) + "px";
+			});
+			body.trigger("input");
+			
+			body.data("full-text", fullText);
+			body.data("cutoff-text", cutoffText);
+			body.data("cutoff-height", body.height());
+		}
+		
+		else {
+			body.css("height", (body.height() + 4) + "px");
 		}
 		
 		
@@ -67,6 +98,7 @@ $(document).ready(function() {
 			});
 			body.trigger("input");
 			
+			
 			parentDiv.css("margin-bottom", "10px");
 			
 		} else {
@@ -86,3 +118,27 @@ $(document).ready(function() {
 		}
 	});
 });
+
+
+function countLines(str) {
+	var numLines = 0;
+	for (let i = 0; i < str.length; i++) {
+		if (str[i] == '\n') {
+			numLines += 1;
+		}
+	}
+	return numLines;
+}
+
+function indexOfLine(numLines, str) {
+	var linesFound = 0;
+	for (let i = 0; i < str.length; i++) {
+		if (str[i] == '\n') {
+			linesFound += 1;
+			if (linesFound == numLines) {
+				return i;
+			}
+		}
+	}
+	return -1;
+}
