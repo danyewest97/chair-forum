@@ -39,6 +39,11 @@
 				<h6 class="card-subtitle mb-2 text-muted username">{{ post.username|e }}</h6>
 				<h6 class="card-subtitle mb-2 text-muted">{{ post.uid|e }}</h6>
 			</div>
+			{% if is_admin %}
+				<div class="card-body right">
+					<button class="deletor">Delete Post</button>
+				</div>
+			{% endif %}
 		</div>
 		<br>
 	{% endfor %}
