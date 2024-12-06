@@ -25,6 +25,7 @@ db_name = os.environ["MONGO_DBNAME"]
 client = pymongo.MongoClient(connection_string)
 db = client[db_name]
 posts = db["Posts"]
+admins = db["Admins"]
 
 
 
@@ -67,7 +68,9 @@ github = oauth.remote_app(
 @app.context_processor
 def inject_logged_in():
     is_logged_in = 'github_token' in session #this will be true if the token is in the session and false otherwise
-    return {"logged_in":is_logged_in}
+    if is_logged_in and session['user_data']['id'] in admins.find():
+        is_admin = True
+    return {"logged_in":is_logged_in,"is_admin":is_admin}
 
 @app.route('/')
 def home():
