@@ -28,8 +28,6 @@ posts = db["Posts"]
 
 
 
-
-
 # Pings to show if you have successfully connected to the MongoDB database
 try:
     client.admin.command('ping')
@@ -104,7 +102,7 @@ def authorized():
             message='Unable to login, please try again.  '
     return render_template('message.html', message=message)
 
-
+# Loads posts page and checks in what order to load the posts. Latest 5, oldest 5, or a random 5.
 @app.route('/posts')
 def renderPosts():
     if "postMode" not in session:
@@ -124,17 +122,19 @@ def renderPosts():
     return render_template('posts.html',posts=loadedPosts)
 
 
-
+# Changes post mode to latest 5
 @app.route('/latest')
 def latest():
     session["postMode"] = "latest"
     return redirect("/posts", code=302)
-    
+
+# Changes post mode to oldest 5
 @app.route('/oldest')
 def oldest():
     session["postMode"] = "oldest"
     return redirect("/posts", code=302)
 
+# Changes post mode to a random 5
 @app.route('/random')
 def random():
     session["postMode"] = "random"
@@ -151,14 +151,7 @@ def get_github_oauth_token():
     return session['github_token']
 
 
-
-
-
-
-
-
-
-
+# User creates a new post and it is sent to the database. Then, the user is redirected back to the posts page
 @app.route('/create_post',methods=["POST"])
 def create_post():
     title = request.form["post_title"]
@@ -170,8 +163,7 @@ def create_post():
     return redirect("/posts", code=302)
 
 
-
-
+# Nested function for /create_post app route. Takes input and puts input into the database
 def create_post(uid,msg,title,username):
     newPost = {"uid":uid,"message":msg,"title":title,"username":username}
     posts.insert_one(newPost)
