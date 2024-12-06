@@ -22,7 +22,7 @@ body {
 }
 
 .card {
-	height: 175px;
+	height: auto;
 	width: 75%;
 	padding: 10px;
 	border: 2px solid black;
@@ -34,13 +34,12 @@ textarea.card-text {
 	border: none;
     outline: none;
 	background-color: white;
-	width: 70%;
+	width: 100%;
 	overflow:auto;
 }
 
 .show-more-button {
 	position: relative;
-	right: 70.5%;
 	font-size: 10px;
 	visibility: hidden;
 }
