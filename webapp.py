@@ -128,7 +128,11 @@ def renderPosts():
 # Also shows replies on that post, and allows the user to reply
 @app.route('/post', methods=['GET'])
 def renderPost():
-    return request.args["post-id"]
+    postID = request.args["post-id"]
+    for document in posts.find({"_id":ObjectId(postID)}):
+        currPost = document
+    
+    return render_template("single-post.html", post=currPost)
 
 
 # Changes post mode to latest 5

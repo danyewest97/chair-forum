@@ -27,6 +27,8 @@ body {
 	padding: 10px;
 	border: 2px solid black;
 	border-radius: 5px;
+	transition: all 0.2s ease-in-out;
+	pointer-events: none;
 }
 
 textarea.card-text {
@@ -37,7 +39,6 @@ textarea.card-text {
 	width: 100%;
 	overflow: none;
 	height: 25px;
-	color: #000000;
 }
 
 .show-more-button {
@@ -54,14 +55,10 @@ textarea.card-text {
 	background-color: "#FF0000";
 }
 
-.card {
-	transition: all 0.2s ease-in-out;
+.card-title{
+	pointer-events: auto;
 }
 
 .card:hover {
 	transform: scale(1.01);
-}
-
-.card-title:hover{
-	color: #949494;
 }

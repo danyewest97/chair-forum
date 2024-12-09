@@ -4,10 +4,11 @@
 
 {% block content %}
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-	<script src="static/posts.js"></script>
+	<script src="static/single-post.js"></script>
 	
 	<div class="card center">
 		<div class="card-body left">
+			<p hidden class="post_id">{{ post['_id']|e }}</p>
 			<h2 class="card-title">{{ post.title|e }}</h2>
 			<div class="post-body">
 				<textarea class="card-text" rows="1" disabled>{{ post.message|e }}</textarea>
