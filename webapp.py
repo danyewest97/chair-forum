@@ -10,6 +10,7 @@ import sys
 from bson.objectid import ObjectId
 
 import random as RANDOM
+from time import strftime, localtime
 
 # This code originally from https://github.com/lepture/flask-oauthlib/blob/master/example/github.py
 # Edited by P. Conrad for SPIS 2016 to add getting Client Id and Secret from
@@ -166,14 +167,15 @@ def create_post():
     msg = request.form["post_body"]
     username = session['user_data']['login']
     uid = session['user_data']['id']
+    datetime = strftime("%d/%m/%Y %H:%M:%S", localtime())
     if 'github_token' in session:
-        create_new_post(uid,msg,title,username)
+        create_new_post(uid,msg,title,username,datetime)
     return redirect("/posts", code=302)
 
 
 # Nested function for /create_post app route. Takes input and puts input into the database
-def create_new_post(uid,msg,title,username):
-    newPost = {"uid":uid,"message":msg,"title":title,"username":username}
+def create_new_post(uid,msg,title,username,datetime):
+    newPost = {"uid":uid,"message":msg,"title":title,"username":username,"datetime":datetime}
     posts.insert_one(newPost)
 
 
