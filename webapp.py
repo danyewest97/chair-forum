@@ -9,7 +9,6 @@ import pymongo
 import sys
 from bson.objectid import ObjectId
 
-from scripts import posts
 import random as RANDOM
 
 # This code originally from https://github.com/lepture/flask-oauthlib/blob/master/example/github.py

@@ -120,7 +120,8 @@ $(document).ready(function() {
 	
 	
 	$(".card").click(function() {
-		var postID = $(this).children("div.first").children("#post_id").value();
+		var childDiv = $(this).children("div.first");
+		var childDiv = $(this).children("div.first");
 		console.log(postID);
 	});
 });
