@@ -1,7 +1,7 @@
 $(document).ready(function() {
 	$(".post-body").data("is-cutoff", "false");
 	
-	var maxCutoffCharacters = 10000;
+	var maxCutoffCharacters = 237;
 	var maxCutoffLines = 3; // Does not check whether there are 3 or more lines of text, only checks return characters ("/n")
 	
 	
