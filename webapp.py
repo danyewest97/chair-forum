@@ -124,6 +124,12 @@ def renderPosts():
         
     return render_template('posts.html',posts=loadedPosts,is_admin=is_admin)
 
+# Loads a singular post when the user clicks on a post on the posts page
+# Also shows replies on that post, and allows the user to reply
+@app.route('/post', methods=['GET'])
+# def renderPost():
+    
+
 
 # Changes post mode to latest 5
 @app.route('/latest')

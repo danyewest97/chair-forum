@@ -117,6 +117,12 @@ $(document).ready(function() {
 			parentDiv.css("margin-bottom", "0px");
 		}
 	});
+	
+	
+	$(".card").click(function() {
+		var postID = $(this).children("div.first").children("#post_id").value();
+		console.log(postID);
+	});
 });
 
 
@@ -142,3 +148,4 @@ function indexOfLine(numLines, str) {
 	}
 	return -1;
 }
+

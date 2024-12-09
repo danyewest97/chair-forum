@@ -31,6 +31,7 @@
 	{% for post in posts %}
 		<div class="card center">
 			<div class="card-body left">
+				<p hidden id="post_id" value="{{ post['_id'] }}">
 				<h2 class="card-title">{{ post.title|e }}</h2>
 				<div class="post-body">
 					<textarea class="card-text" rows="1" disabled>{{ post.message|e }}</textarea>
