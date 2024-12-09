@@ -119,10 +119,12 @@ $(document).ready(function() {
 	});
 	
 	
-	$(".card").click(function() {
-		var childDiv = $(this).children("div.first");
-		var childDiv = $(this).children("div.first");
-		console.log(postID);
+	$(".card-title").click(function() {
+		var postID = $(this).siblings(".post_id").text();
+		
+		// Redirects the user to the page with only the post that they clicked on, using window.location.href because it allows the user to press the back button
+		// to get back to the posts page
+		window.location.href = "/post?post-id=" + postID;
 	});
 });
 

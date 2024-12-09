@@ -127,8 +127,8 @@ def renderPosts():
 # Loads a singular post when the user clicks on a post on the posts page
 # Also shows replies on that post, and allows the user to reply
 @app.route('/post', methods=['GET'])
-# def renderPost():
-    
+def renderPost():
+    return request.args["post-id"]
 
 
 # Changes post mode to latest 5
