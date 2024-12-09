@@ -37,6 +37,7 @@ textarea.card-text {
 	width: 100%;
 	overflow: none;
 	height: 25px;
+	color: #000000;
 }
 
 .show-more-button {
@@ -51,4 +52,16 @@ textarea.card-text {
 
 .deletor {
 	background-color: "#FF0000";
+}
+
+.card {
+	transition: all 0.2s ease-in-out;
+}
+
+.card:hover {
+	transform: scale(1.01);
+}
+
+.card-title:hover{
+	color: #949494;
 }
